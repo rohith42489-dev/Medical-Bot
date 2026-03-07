@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediFlow | Smart Healthcare Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-theme">
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>Medi<span>Flow</span></span>
+            </div>
+            <div class="status-indicator">
+                <span class="pulse"></span> AI Engine Active
+            </div>
+        </header>
+
+        <main>
+            <div id="welcome-screen" class="view active">
+                <div class="hero-content">
+                    <h1>Your Personal AI <span class="gradient-text">Health Assistant</span></h1>
+                    <p>Advanced diagnostic analysis powered by machine learning. Get instant insights and precautions
+                        based on your symptoms.</p>
+
+                    <div class="input-card glass">
+                        <div class="input-group">
+                            <label for="user-name">What should I call you?</label>
+                            <input type="text" id="user-name" placeholder="Enter your name..." autocomplete="off">
+                        </div>
+                        <button id="start-btn" class="primary-btn">
+                            Get Started <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chat-screen" class="view">
+                <div class="chat-wrapper glass">
+                    <div class="chat-header">
+                        <div class="bot-info">
+                            <div class="bot-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3>MediFlow AI</h3>
+                                <p>Online | Diagnostic Mode</p>
+                            </div>
+                        </div>
+                        <button id="reset-btn" title="Reset Session">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Messages will appear here -->
+                    </div>
+
+                    <div id="typing-indicator" class="typing-indicator hidden">
+                        <span></span><span></span><span></span>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <div id="options-container" class="options-container hidden">
+                            <!-- Yes/No buttons or symptom matches will appear here -->
+                        </div>
+                        <div class="input-box">
+                            <input type="text" id="user-input" placeholder="Type your symptom here..."
+                                autocomplete="off">
+                            <button id="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="result-screen" class="view">
+                <div class="result-container">
+                    <div class="result-header glass">
+                        <div class="result-icon">
+                            <i class="fas fa-file-medical-alt"></i>
+                        </div>
+                        <h2>Diagnosis Summary</h2>
+                    </div>
+
+                    <div class="result-grid">
+                        <div class="main-result glass card-reveal" style="--delay: 0.1s">
+                            <h3>Potential Diagnosis</h3>
+                            <div id="primary-diagnosis" class="diagnosis-badge">--</div>
+                            <p id="diagnosis-desc">Loading description...</p>
+                        </div>
+
+                        <div class="condition-status glass card-reveal" style="--delay: 0.2s">
+                            <h3>Condition Assessment</h3>
+                            <div id="condition-box" class="condition-badge info">
+                                <i class="fas fa-info-circle"></i>
+                                <span id="condition-text">Calculating...</span>
+                            </div>
+                        </div>
+
+                        <div class="precautions-card glass card-reveal" style="--delay: 0.3s">
+                            <h3>Recommended Precautions</h3>
+                            <ul id="precautions-list">
+                                <!-- Precautions will be added here -->
+                            </ul>
+                        </div>
+
+                        <div id="secondary-result" class="secondary-card glass card-reveal hidden"
+                            style="--delay: 0.4s">
+                            <h3>Alternative Consideration</h3>
+                            <p>Our SVM model also suggests: <strong id="alt-diagnosis">--</strong></p>
+                        </div>
+                    </div>
+
+                    <button id="new-diagnosis-btn" class="primary-btn">
+                        Start New Diagnosis <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-info">
+                <p>Developed by: <strong>ROHITH RAJENDRAN</strong> | Reg No: <strong>23BSCS047</strong></p>
+                <p>&copy; 2024 MediFlow AI. For informational purposes only. Always consult a doctor for medical advice.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

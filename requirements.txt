@@ -1,3 +1,6 @@
 scikit-learn
 pandas
+numpy
+flask
+flask-cors
 pyttsx3
