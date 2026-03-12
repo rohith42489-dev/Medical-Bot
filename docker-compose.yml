@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: rhoith-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+
+  frontend:
+    build: ./frontend
+    container_name: rhoith-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
