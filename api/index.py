@@ -4,7 +4,7 @@ from flask_cors import CORS
 from chatbot_engine import ChatbotEngine
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 CORS(app)
 
 engine = ChatbotEngine()
@@ -157,3 +157,6 @@ if __name__ == '__main__':
 # Vercel serverless handler (ADD THIS AT END)
 def handler(request, context):
     return app(request.environ, start_response)
+
+def handler(environ, start_response):
+    return app(environ, start_response)
