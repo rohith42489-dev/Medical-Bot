@@ -39,10 +39,11 @@ const App = () => {
       const resp = await axios.post('/api/start', { name });
       setSessionId(resp.data.session_id);
       setView('chat');
-      setMessages([{ id: 1, text: resp.data.message, sender: 'bot' }]);
+      setMessages([{ id: 'bot-initial', text: resp.data.message, sender: 'bot' }]);
     } catch (err) {
       console.error(err);
-      alert("Failed to start session. Is the backend running?");
+      const errorMsg = err.response?.data?.message || err.message || "Is the backend running?";
+      alert(`Failed to start session: ${errorMsg}`);
     }
   };
 
@@ -51,7 +52,7 @@ const App = () => {
 
     const userText = text || additional.selected_symptom?.replace(/_/g, ' ') || additional.input;
     if (userText) {
-      setMessages(prev => [...prev, { id: Date.now(), text: userText, sender: 'user' }]);
+      setMessages(prev => [...prev, { id: `user-${Date.now()}`, text: userText, sender: 'user' }]);
     }
 
     setInputValue('');
@@ -71,7 +72,7 @@ const App = () => {
       setTimeout(() => {
         setIsTyping(false);
         if (data.message) {
-          setMessages(prev => [...prev, { id: Date.now() + 1, text: data.message, sender: 'bot' }]);
+          setMessages(prev => [...prev, { id: `bot-${Date.now()}`, text: data.message, sender: 'bot' }]);
         }
 
         if (data.state === 'clarifying_symptom') {

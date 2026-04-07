@@ -133,7 +133,7 @@ class ChatbotEngine:
             if item in self.severityDictionary:
                 total_sum += self.severityDictionary[item]
         
-        if (len(symptoms_exp) + 1) == 0:
+        if len(symptoms_exp) == 0:
             return "It might not be that bad but you should take precautions."
             
         condition_score = (total_sum * days) / (len(symptoms_exp) + 1)
