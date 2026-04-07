@@ -1,3 +1,4 @@
+from werkzeug.wrappers import Response
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from chatbot_engine import ChatbotEngine
@@ -152,3 +153,7 @@ if __name__ == '__main__':
     if not os.path.exists('static'):
         os.makedirs('static')
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+# Vercel serverless handler (ADD THIS AT END)
+def handler(request, context):
+    return app(request.environ, start_response)
